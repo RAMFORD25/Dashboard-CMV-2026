@@ -1,22 +1,16 @@
-# Dashboard CMV 2026 · V10
-
-Dashboard territorial con **199 registros** de la Matriz PIA-2026(3) y **289 geometrías** viales GL/GR. Las geometrías no equivalen a intervenciones adicionales.
+# Dashboard CMV 2026 · V10.1
 
 ## Publicación en GitHub Pages
 
-1. Subir `index.html`, `.nojekyll` y `README.md` a la raíz del repositorio `RAMFORD25/Dashboard-CMV-2026`.
-2. En GitHub: **Settings → Pages → Build and deployment → Deploy from a branch → main → /(root) → Save**.
-3. Visitar `https://ramford25.github.io/Dashboard-CMV-2026/` cuando se complete la publicación.
-4. Crear en MapTiler una **clave pública** de mapas web y autorizar `ramford25.github.io` en **Allowed HTTP Origins**.
-5. En el dashboard, abrir **Ámbito Territorial**, pulsar **⚙ API Key**, introducir la clave y guardar. La clave se guarda en `localStorage` de ese navegador, **no** en GitHub.
-6. Seleccionar **Calles**, **Satélite** o **Topográfico**. Si falla la conexión o la autorización, el visor local mantiene los trazados.
+1. En MapTiler, configura la clave **pública** para permitir únicamente el origen `ramford25.github.io`. Comprueba que el plan autorice este uso público/institucional.
+2. Abre `config.js` y reemplaza `PEGAR_AQUI_TU_CLAVE_PUBLICA_MAPTILER` por tu clave pública. **No compartas claves privadas ni credenciales administrativas.**
+3. En el repositorio `RAMFORD25/Dashboard-CMV-2026`, sustituye `index.html`, y agrega `config.js` y `.nojekyll` en la raíz de la rama `main` (puedes actualizar README.md).
+4. Comprueba `https://ramford25.github.io/Dashboard-CMV-2026/` después de que termine la publicación. Recarga con Ctrl+F5 si ves una versión anterior.
 
-## Notas técnicas
+### Seguridad
 
-- No introducir tokens privados ni credenciales administrativas.
-- El almacenamiento local de la clave es específico del navegador y dispositivo. Otros usuarios necesitarán configurar su propia clave, salvo que se implemente una clave pública de producción restringida al dominio en una versión posterior.
-- MapTiler requiere Internet y un plan adecuado a uso institucional. Verificar atribución, límites y licencia antes de difusión pública.
-- Los estilos Claro, Oscuro y Alto contraste muestran trazados sin solicitar teselas MapTiler.
-- Chart.js y Leaflet se obtienen mediante CDN; para funcionamiento completamente desconectado habría que alojar estas bibliotecas localmente.
-- La red vial proviene de los GeoJSON entregados y los indicadores de la matriz; las geometrías simplificadas no reemplazan a los archivos GIS originales.
-- Los nombres de las rutas sin coincidencia no deben incorporarse automáticamente a los totales de intervenciones.
+El botón de edición de la API Key fue retirado. Los visitantes no pueden modificar la configuración compartida desde la interfaz; **sí pueden inspeccionar la clave pública** en el código del sitio y alterar localmente su navegador. Restringe dominio, supervisa cuotas y rota la clave si detectas abuso.
+
+### Cartografía
+
+Calles, Satélite y Topográfico usan MapTiler y requieren Internet. El mapa local con trazados GL/GR permanece disponible como respaldo. Se mantienen 199 registros de matriz y 289 geometrías, que no equivalen a 289 intervenciones.
